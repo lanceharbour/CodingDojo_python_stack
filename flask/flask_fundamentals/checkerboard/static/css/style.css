@@ -1,0 +1,25 @@
+* {
+    outline: 1px solid red;
+}
+.container {
+    text-align: center;
+    display: inline-block;
+    width: 960px;
+}
+.color0{
+    background-color: red;
+}
+.color1{
+    background-color: black;
+}
+.new_color1{
+        background-color: {{new_color1}};
+}
+.new_color2{
+        background-color: {{new_color2}};
+}
+
+tr td{
+    height: 50px;
+    width: 59px;
+}

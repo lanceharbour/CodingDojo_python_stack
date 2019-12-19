@@ -1,0 +1,9 @@
+/* * {
+    outline: 1px solid red;
+} */
+.container {
+    outline: solid 1px gray;
+    margin-top: 20px;
+    padding: 20px;
+    width: fit-content;
+}

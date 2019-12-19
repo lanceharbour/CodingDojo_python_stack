@@ -1,0 +1,12 @@
+.row {
+    margin-top: 20px;
+}
+.table-outline {
+    outline: 1px solid black;
+}
+.results {
+    margin-top: 10px;
+}
+.add-col {
+   column-width: 250px;
+}

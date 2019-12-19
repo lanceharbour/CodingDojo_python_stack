@@ -1,0 +1,35 @@
+from apps.dojo_ninjas_app.modles import *
+
+Dojo.objects.create(name="Boise", city="Boise", state="ID")
+Dojo.objects.create(name="Seattle", city="Seattle", state="WA")
+Dojo.objects.create(name="San Jose", city="San Jose", state="CA")
+
+dojo_delete = Dojo.objects.all()
+dojo_delete.delete()
+
+
+Dojo.objects.create(name="LA", city="LA", state="CA")
+Dojo.objects.create(name="Dallas", city="Dallas", state="TX")
+Dojo.objects.create(name="Tulsa", city="Tulsa", state="OK")
+
+dojo_one = Dojo.objects.get(id=4)
+Ninja.objects.create(first_name="Fred", last_name="Moran", dojo_id=dojo_one)
+Ninja.objects.create(first_name="Jasleen", last_name="Rich", dojo_id=dojo_one)
+Ninja.objects.create(first_name="Alyssa", last_name="Morley", dojo_id=dojo_one)
+
+dojo_two = Dojo.objects.get(id=5)
+Ninja.objects.create(first_name="Karim", last_name="Johnston", dojo_id=dojo_two)
+Ninja.objects.create(first_name="Tyriq", last_name="Little", dojo_id=dojo_two)
+Ninja.objects.create(first_name="Eric", last_name="Nash", dojo_id=dojo_two)
+
+dojo_three = Dojo.objects.get(id=6)
+Ninja.objects.create(first_name="Rhianna", last_name="Crawford", dojo_id=dojo_three)
+Ninja.objects.create(first_name="Luc", last_name="Sparks", dojo_id=dojo_three)
+Ninja.objects.create(first_name="Sonya", last_name="Mcintosh", dojo_id=dojo_three)
+
+first = Dojo.objects.first().ninjas.all()
+last = Dojo.objects.last().ninjas.all()
+
+last_ninja_dojo = Dojo.objects.filter(id=Ninja.objects.last().dojo_id_id)
+
+Dojo.objects.create(name="Boise", city="Boise", state="ID")

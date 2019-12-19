@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale-1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+    /* * {
+        outline: 1px solid red;
+    } */
+
+    .container {
+        text-align: center;
+        display: inline-block;
+        width: 960px;
+    }
+    .box {
+        display: inline-block;
+        background-color: #9FC5F8;
+        margin: 5px;
+        width: 150px;
+        height: 150px;
+        border-style: solid;
+    }
+    .color {
+        background-color: {{new_color}};
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <h1>Welcome!</h1>
+    {% for x in range(0,num_times): %}
+    <div class="box color"></div>
+    {% endfor %}
+    </div>
+</body>
+</html>

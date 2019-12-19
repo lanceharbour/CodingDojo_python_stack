@@ -1,0 +1,27 @@
+body{
+    background: url("/static/random_word_app/images/statue_lake.jpg") no-repeat;
+    background-size: cover;
+}
+.center-div-1 {
+    margin: 0 auto;
+    text-align: center;
+    font-size: 25px;
+    margin-top: 50px;
+    width: 0 auto; 
+}
+.center-div-2 {
+    background-color: rgb(223, 223, 219);
+    margin: 0 auto;
+    text-align: center;
+    font-size: 50px;
+    width: 450px; 
+    outline: solid 2px rgb(75, 74, 74);
+}
+.button-div {
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 10px;
+}
+.button{
+    font-size: 20px;
+}

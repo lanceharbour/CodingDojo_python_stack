@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale-1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>The Wall</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    {% load static %}
+    <link rel='stylesheet' type='text/css' href="{% static 'wall_app/css/style.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/wall">The Wall</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    App Directory
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/books">Favorite Books</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/wall">The Wall!</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/success">Welcome Page</a>
+                    </div>
+                </li>
+            </ul>
+            <span class="navbar-text mr-2">
+                Welcome {{ user.first_name }}!
+            </span>
+            <form class="form-inline my-2 my-lg-0">
+                <a class="btn btn-outline-light my-2 my-sm-0" href="/logout">Logout</a>
+            </form>
+        </div>
+    </nav>
+    <main role="main" class="container">
+        <div class="row mt-5">
+            <div class="col">
+                <h3>{{ user.first_name }}, Welcome to The Wall!</h3>
+                <form action="/wall/new_post" method="POST">
+                {% csrf_token %}
+                    <div class="form-group">
+                        <label>Post a message:</label>
+                        <textarea name="post" class="form-control" rows="5"></textarea>
+                    </div>
+                    <button class="button float-right" type="submit">Post a message</button><br>
+                </form>
+                {% for post in all_posts reversed %}
+                    <form action="/wall/del_post" method="POST">
+                        {% csrf_token %}
+                        <p><b>{{ post.user.first_name }} {{ post.user.last_name }} - {{ post.created_at }}</b></p>
+                        <p>{{ post.message }}</p>
+                        {% if request.session.userid == post.user.id %}
+                            <input type="hidden" name="post_id"  value="{{ post.id }}">
+                            <button class="button btn-danger float-right" type="submit">Delete post</button><br>
+                        {% endif %}
+                    </form>
+                    <div class="container">
+                            <form action="/wall/del_comment" method="POST">
+                            {% csrf_token %}
+                                {% for comment in post.comments.all %}
+                                    <p><b>{{ comment.user.first_name }} {{ comment.user.last_name }} - {{ comment.created_at }}</b></p>
+                                    <p>{{ comment.comment }}</p>
+                                    {% if request.session.userid == comment.user.id %}
+                                        <input type="hidden" name="comment_id"  value="{{ comment.id }}">
+                                        <button class="button btn-danger float-right" type="submit">Delete comment</button><br>
+                                    {% endif %}
+                                {% endfor %}
+                            </form>
+                        <form action="/wall/new_comment" method="POST">
+                        {% csrf_token %}
+                            <input type="hidden" name="post_id"  value="{{ post.id }}">
+                            <div class="form-group">
+                                <label>Post a comment:</label>
+                                <textarea name="comment" class="form-control" rows="2"></textarea>
+                            </div>
+                            <button class="button float-right" type="submit">Post a comment</button><br>
+                        </form>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+    <!-- Optional JavaScript -->
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

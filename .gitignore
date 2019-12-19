@@ -1,0 +1,9 @@
+#directories to ignore
+/my_environments/*
+/hackathon/*
+**/python_belt_proj/*
+__pycache__/
+#files to ignore
+activate_py3ENV.*
+activate_djangoPy3Env.*
+db.sqlite3

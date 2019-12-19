@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale-1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <!-- <link rel='stylesheet' type='text/css' href="{{url_for('static', filename='css/style.css')}}"> -->
+</head>
+<body>
+    <main role="main" class="container">
+        <nav class="navbar navbar-dark bg-dark">
+        <span class="navbar-brand mb-0 h1">Ninja Gold!</span>
+        </nav>
+        <div class="jumbotron">
+            <h5>Your Gold: <span class="border rounded px=5 py=1">{{ session['user_gold'] }}</span></h5>
+            <div class="card-deck mb-3 text-center">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <h1 class="card-title pricing-card-title">Farm</h1>
+                        <ul class="list-unstyled mt-3 mb-4">
+                        <li>(earns 10-20 gold)</li>
+                        </ul>
+                        <form action="/process_money" method="POST">
+                        <input type="hidden" name="building" value="farm">
+                        <button class="btn btn-lg btn-block btn-primary">Find Gold!</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <h1 class="card-title pricing-card-title">Cave</h1>
+                        <ul class="list-unstyled mt-3 mb-4">
+                        <li>(earns 5-10 gold)</li>
+                        </ul>
+                        <form action="/process_money" method="POST">
+                        <input type="hidden" name="building" value="cave">
+                        <button class="btn btn-lg btn-block btn-primary">Find Gold!</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <h1 class="card-title pricing-card-title">House</h1>
+                        <ul class="list-unstyled mt-3 mb-4">
+                        <li>(earns 2-5 gold)</li>
+                        </ul>
+                        <form action="/process_money" method="POST">
+                        <input type="hidden" name="building" value="house">
+                        <button class="btn btn-lg btn-block btn-primary">Find Gold!</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <h1 class="card-title pricing-card-title">Casino</h1>
+                        <ul class="list-unstyled mt-3 mb-4">
+                        <li>(earns/takes 0-500 gold)</li>
+                        </ul>
+                        <form action="/process_money" method="POST">
+                        <input type="hidden" name="building" value="casino">
+                        <button class="btn btn-lg btn-block btn-primary">Find Gold!</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <h3>Activities:</h3>
+                    <div class="card">
+                        <div class="card-body">
+                            {% for activity in session['activities'] | reverse %}
+                                <p class="">{{ activity['result'] | safe }} </p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form action="/reset_game" method="POST">
+            <input type="submit" value="Reset game!">
+            </form>
+        </div>
+    </main>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

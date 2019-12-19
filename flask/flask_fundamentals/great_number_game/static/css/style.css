@@ -1,0 +1,21 @@
+.jumbotron{
+    background-color: white;
+}
+.game-container{
+    text-align: center;
+}
+.results{
+    width: 200px;
+    height: 150px;
+    display:  inline-block;
+    outline: solid black 2px;
+}
+.win {
+    background-color: green;
+}
+.lose {
+    background-color: red;
+}
+input {
+    margin-top: 20px;
+}

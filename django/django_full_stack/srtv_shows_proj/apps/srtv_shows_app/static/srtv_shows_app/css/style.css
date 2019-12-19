@@ -1,0 +1,9 @@
+.table-outline {
+    outline: 1px solid black;
+}
+.results {
+    margin-top: 10px;
+}
+.go {
+    margin-left: 15px;
+}

@@ -1,0 +1,34 @@
+book1 = Book.objects.create(title="C Sharp")
+book2 = Book.objects.create(title="Java")
+book3 = Book.objects.create(title="Python")
+book4 = Book.objects.create(title="PHP")
+book5 = Book.objects.create(title="Ruby")
+
+author1 = Author.objects.create(first_name="Jane", last_name="Austen")
+author2 = Author.objects.create(first_name="Emily", last_name="Dickinson")
+author3 = Author.objects.create(first_name="Fyodor", last_name="Dostoevksy")
+author4 = Author.objects.create(first_name="William", last_name="Shakespeare")
+author5 = Author.objects.create(first_name="Lau", last_name="Tzu")
+
+csharp = Book.objects.get(title="C Sharp")
+csharp.title = "C#"
+csharp.save()
+
+author5 = Author.objects.get(id=5)
+author5.first_name = "Bill"
+author5.save()
+
+author1.books.add(book1, book2)
+author3.books.add(book1, book2, book3)
+author4.books.add(book1,book2, book3,book4)
+author5.books.add(book1,book2, book3,book4,book5)
+
+book3.authors.all()
+
+book3.authors.remove(book3.authors.first())
+
+book2.authors.add(author5)
+
+author3.books.all()
+
+book5.authors.all()
